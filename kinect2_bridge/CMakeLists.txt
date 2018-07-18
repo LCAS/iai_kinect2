@@ -23,13 +23,14 @@ externalproject_add(libfreenect2
 
   #--Configure step-------------
   SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../libfreenect2
-  CMAKE_ARGS -DENABLE_CXX11=ON -DENABLE_OPENCL=ON -DCUDA_PROPAGATE_HOST_FLAGS=off
+  CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX} -DENABLE_CXX11=ON -DENABLE_OPENCL=ON -DCUDA_PROPAGATE_HOST_FLAGS=off
   
   #--Build step-----------------
   BUILD_COMMAND make
-  
+
   #--Install step---------------
-  INSTALL_COMMAND sudo make install &&  sudo cp ${CMAKE_CURRENT_SOURCE_DIR}/../libfreenect2/platform/linux/udev/90-kinect2.rules /etc/udev/rules.d/ 
+  INSTALL_COMMAND make install
+  # &&  sudo cp ${CMAKE_CURRENT_SOURCE_DIR}/../libfreenect2/platform/linux/udev/90-kinect2.rules /etc/udev/rules.d/ 
 )
 
 # set default build type
@@ -38,7 +39,7 @@ if(NOT CMAKE_BUILD_TYPE)
 endif(NOT CMAKE_BUILD_TYPE)
 
 # Where it should find libfreenect
-set(freenect2_DIR /usr/local)
+set(freenect2_DIR ${CMAKE_INSTALL_PREFIX})
 
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DBT_USE_DOUBLE_PRECISION -Wall")
@@ -129,6 +130,9 @@ target_link_libraries(kinect2_bridge
   ${freenect2_LIBRARY}
   ${kinect2_registration_LIBRARY}
 )
+
+add_dependencies(kinect2_bridge libfreenect2)
+add_dependencies(kinect2_bridge_nodelet libfreenect2)
 
 #############
 ## Install ##

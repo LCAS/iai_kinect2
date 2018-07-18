@@ -11,9 +11,6 @@
   <buildtool_depend>catkin</buildtool_depend>
 
 
-
-
-
   <!-- dependencies for libfreenect2-->
   <build_depend>cmake</build_depend> 
   <build_depend>pkg-config</build_depend> 
@@ -21,8 +18,10 @@
   <build_depend>libjpeg-turbo8-dev</build_depend> 
   <build_depend>libglfw3-dev</build_depend> 
   <build_depend>libopenni2-dev</build_depend>
-<!-- Still to resolve libjpeg-turbo8-dev libusb-1.0-0-dev  cuda nvidia-modprobe opencl-headers nvidia-opencl-dev  -->
-
+  <build_depend>libturbojpeg</build_depend>
+  <build_depend>libusb-dev</build_depend>
+  <build_depend>cuda_latest</build_depend>
+  <build_depend>opencl_latest</build_depend>
 
 
   <build_depend>roscpp</build_depend>
