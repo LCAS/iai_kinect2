@@ -1,6 +1,46 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(kinect2_bridge CXX)
 
+# See https://cmake.org/cmake/help/v3.0/module/ExternalProject.html
+include(ExternalProject)
+
+
+# Nice debug trick ...
+#get_cmake_property(_variableNames VARIABLES)
+#list (SORT _variableNames)
+#foreach (_variableName ${_variableNames})
+#    message(STATUS "${_variableName}=${${_variableName}}")
+#endforeach()
+
+
+# compile libfreenect2
+externalproject_add(libfreenect2
+  #PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/..
+  
+  #--Download step--------------
+  # Interesting ...
+  #GIT_REPOSITORY https://github.com/OpenKinect/libfreenect2.git
+
+  #--Configure step-------------
+  SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../libfreenect2
+  CMAKE_ARGS -DENABLE_CXX11=ON -DENABLE_OPENCL=ON -DCUDA_PROPAGATE_HOST_FLAGS=off
+  
+  #--Build step-----------------
+  BUILD_COMMAND make
+  
+  #--Install step---------------
+  INSTALL_COMMAND sudo make install &&  sudo cp ${CMAKE_CURRENT_SOURCE_DIR}/../libfreenect2/platform/linux/udev/90-kinect2.rules /etc/udev/rules.d/ 
+)
+
+# set default build type
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release)
+endif(NOT CMAKE_BUILD_TYPE)
+
+# Where it should find libfreenect
+set(freenect2_DIR /usr/local)
+
+
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DBT_USE_DOUBLE_PRECISION -Wall")
 # Unused warnings
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wuninitialized -Winit-self -Wunused-function -Wunused-label -Wunused-variable -Wunused-but-set-variable -Wunused-but-set-parameter")
