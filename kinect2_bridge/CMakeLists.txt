@@ -1,38 +1,6 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(kinect2_bridge CXX)
 
-# See https://cmake.org/cmake/help/v3.0/module/ExternalProject.html
-include(ExternalProject)
-
-
-# Nice debug trick ...
-#get_cmake_property(_variableNames VARIABLES)
-#list (SORT _variableNames)
-#foreach (_variableName ${_variableNames})
-#    message(STATUS "${_variableName}=${${_variableName}}")
-#endforeach()
-
-
-# compile libfreenect2
-externalproject_add(libfreenect2
-  #PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/..
-  
-  #--Download step--------------
-  # Interesting ...
-  #GIT_REPOSITORY https://github.com/OpenKinect/libfreenect2.git
-
-  #--Configure step-------------
-  SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../libfreenect2
-  CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX} -DENABLE_CXX11=ON -DENABLE_OPENCL=ON -DCUDA_PROPAGATE_HOST_FLAGS=off
-  
-  #--Build step-----------------
-  BUILD_COMMAND make
-
-  #--Install step---------------
-  INSTALL_COMMAND make install
-  # &&  sudo cp ${CMAKE_CURRENT_SOURCE_DIR}/../libfreenect2/platform/linux/udev/90-kinect2.rules /etc/udev/rules.d/ 
-)
-
 # set default build type
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
@@ -84,7 +52,7 @@ catkin_package(
   INCLUDE_DIRS include
 #  LIBRARIES kinect2_bridge
   CATKIN_DEPENDS kinect2_registration
-#  DEPENDS system_lib
+  DEPENDS libfreenect2_ros
 )
 
 ###########
@@ -131,8 +99,8 @@ target_link_libraries(kinect2_bridge
   ${kinect2_registration_LIBRARY}
 )
 
-add_dependencies(kinect2_bridge libfreenect2)
-add_dependencies(kinect2_bridge_nodelet libfreenect2)
+add_dependencies(kinect2_bridge libfreenect2_ros)
+add_dependencies(kinect2_bridge_nodelet libfreenect2_ros)
 
 #############
 ## Install ##
