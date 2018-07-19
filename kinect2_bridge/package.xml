@@ -13,7 +13,6 @@
 
   <build_depend>libfreenect2_ros</build_depend>
 
-
   <build_depend>roscpp</build_depend>
   <build_depend>rostime</build_depend>
   <build_depend>tf</build_depend>

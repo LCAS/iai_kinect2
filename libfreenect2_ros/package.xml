@@ -15,10 +15,8 @@
   <build_depend>cmake</build_depend> 
   <build_depend>pkg-config</build_depend> 
   <build_depend>libturbojpeg</build_depend> 
-  <build_depend>libjpeg-turbo8-dev</build_depend> 
   <build_depend>libglfw3-dev</build_depend> 
   <build_depend>libopenni2-dev</build_depend>
-  <build_depend>libturbojpeg</build_depend>
   <build_depend>libusb-dev</build_depend>
   <build_depend>cuda_latest</build_depend>
   <build_depend>opencl_latest</build_depend>
@@ -26,13 +24,12 @@
   <run_depend>cmake</run_depend> 
   <run_depend>pkg-config</run_depend> 
   <run_depend>libturbojpeg</run_depend> 
-  <run_depend>libjpeg-turbo8-dev</run_depend> 
   <run_depend>libglfw3-dev</run_depend> 
   <run_depend>libopenni2-dev</run_depend>
-  <run_depend>libturbojpeg</run_depend>
   <run_depend>libusb-dev</run_depend>
   <run_depend>cuda_latest</run_depend>
   <run_depend>opencl_latest</run_depend>
+
 
 
 </package>
