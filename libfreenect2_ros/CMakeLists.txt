@@ -32,3 +32,15 @@ externalproject_add(libfreenect2
   INSTALL_COMMAND make install
   # &&  sudo cp ${CMAKE_CURRENT_SOURCE_DIR}/../libfreenect2/platform/linux/udev/90-kinect2.rules /etc/udev/rules.d/ 
 )
+
+# what follows is to make catkin happy about this pseudo-package
+# cmake pkg-config libturbojpeg libglfw3-dev libopenni2-dev libusb-1.0-dev cuda_latest opencl_latest 
+find_package(catkin REQUIRED COMPONENTS      )
+
+catkin_package(
+#  INCLUDE_DIRS include
+#  LIBRARIES kinect2_bridge
+#  CATKIN_DEPENDS kinect2_registration
+#  DEPENDS libfreenect2_ros
+)
+
