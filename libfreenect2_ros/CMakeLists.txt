@@ -50,3 +50,22 @@ add_library(libfreenect2_ros SHARED IMPORTED)
 
 add_dependencies(libfreenect2_ros libfreenect2)
 
+# Mark executables and/or libraries for installation
+install(TARGETS libfreenect2
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+
+# In case the other does not work...
+install(TARGETS libfreenect2_ros
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+
+
+
+# Mark cpp header files for installation
+install(DIRECTORY ${CATKIN_DEVEL_PREFIX}/include/
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/include
+  FILES_MATCHING PATTERN "*.h"
+  PATTERN ".svn" EXCLUDE)
