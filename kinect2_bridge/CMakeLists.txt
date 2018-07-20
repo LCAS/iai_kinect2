@@ -29,6 +29,7 @@ ELSE()
 ENDIF()
 
 find_package(freenect2 REQUIRED HINTS "$ENV{HOME}/freenect2")
+#find_package(libfreenect2_ros REQUIRED)
 
 find_package(catkin REQUIRED COMPONENTS roscpp rostime tf std_msgs sensor_msgs nodelet cv_bridge compressed_depth_image_transport kinect2_registration)
 

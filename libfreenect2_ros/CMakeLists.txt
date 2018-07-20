@@ -12,6 +12,8 @@ include(ExternalProject)
 #    message(STATUS "${_variableName}=${${_variableName}}")
 #endforeach()
 
+message(-----------------------------------------------------------> STATUS "DESTIDR=$ENV{DESTDIR}")
+
 
 # compile libfreenect2
 externalproject_add(libfreenect2
@@ -19,10 +21,10 @@ externalproject_add(libfreenect2
   
   #--Download step--------------
   # Interesting ...
-  #GIT_REPOSITORY https://github.com/OpenKinect/libfreenect2.git
+  GIT_REPOSITORY https://github.com/OpenKinect/libfreenect2.git
 
   #--Configure step-------------
-  SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/./libfreenect2
+  #SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/./libfreenect2
   CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX} -DENABLE_CXX11=ON -DENABLE_OPENCL=ON -DCUDA_PROPAGATE_HOST_FLAGS=off
   
   #--Build step-----------------
@@ -43,4 +45,8 @@ catkin_package(
 #  CATKIN_DEPENDS kinect2_registration
 #  DEPENDS libfreenect2_ros
 )
+
+add_library(libfreenect2_ros SHARED IMPORTED)
+
+add_dependencies(libfreenect2_ros libfreenect2)
 
