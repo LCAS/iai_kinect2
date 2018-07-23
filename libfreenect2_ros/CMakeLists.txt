@@ -12,19 +12,18 @@ include(ExternalProject)
 #    message(STATUS "${_variableName}=${${_variableName}}")
 #endforeach()
 
-
 # compile libfreenect2
 externalproject_add(libfreenect2
   #PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/..
-  
+
   #--Download step--------------
   # Interesting ...
-  #GIT_REPOSITORY https://github.com/OpenKinect/libfreenect2.git
+  GIT_REPOSITORY https://github.com/OpenKinect/libfreenect2.git
 
   #--Configure step-------------
-  SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/./libfreenect2
+  #SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/./libfreenect2
   CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX} -DENABLE_CXX11=ON -DENABLE_OPENCL=ON -DCUDA_PROPAGATE_HOST_FLAGS=off
-  
+
   #--Build step-----------------
   BUILD_COMMAND make
 
@@ -44,3 +43,19 @@ catkin_package(
 #  DEPENDS libfreenect2_ros
 )
 
+add_library(libfreenect2 SHARED IMPORTED)
+
+#add_dependencies(libfreenect2_ros libfreenect2)
+
+# Mark executables and/or libraries for installation
+install(TARGETS libfreenect2
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+# Mark cpp header files for installation
+install(DIRECTORY ${CATKIN_DEVEL_PREFIX}/include/
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/include
+  FILES_MATCHING PATTERN "*.h"
+  PATTERN ".svn" EXCLUDE)

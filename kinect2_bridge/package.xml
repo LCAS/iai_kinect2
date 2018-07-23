@@ -24,6 +24,9 @@
   <build_depend>nodelet</build_depend>
   <build_depend>cv_bridge</build_depend><!-- Depend on cv_bridge instead of libopencv-dev to support ROS Hydro.-->
 
+
+  <run_depend>libfreenect2_ros</run_depend>
+
   <run_depend>message_runtime</run_depend>
   <run_depend>roscpp</run_depend>
   <run_depend>rostime</run_depend>

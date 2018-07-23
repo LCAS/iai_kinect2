@@ -19,8 +19,9 @@
   <build_depend>libopenni2-dev</build_depend>
   <build_depend>libusb-1.0-dev</build_depend>
   <build_depend>cuda_latest</build_depend>
-  <build_depend>opencl_latest</build_depend>
+  <build_depend>git</build_depend>
 
+  <run_depend>git</run_depend>
   <run_depend>cmake</run_depend> 
   <run_depend>pkg-config</run_depend> 
   <run_depend>libturbojpeg</run_depend> 
