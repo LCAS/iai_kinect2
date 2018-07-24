@@ -2,6 +2,9 @@
 Changelog for package kinect2_registration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.0.7 (2018-07-23)
 ------------------
 
