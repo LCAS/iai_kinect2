@@ -2,8 +2,8 @@
 Changelog for package kinect2_bridge
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.9 (2018-07-24)
+------------------
 * Changed readme.md file in kinect2_bridge
 * Contributors: Manuel Fernandez-Carmona
 
