@@ -12,6 +12,8 @@
 
   <build_depend>roscpp</build_depend>
   <build_depend>cv_bridge</build_depend><!-- Depend on cv_bridge instead of libopencv-dev to support ROS Hydro.-->
+  <build_depend>opencl_latest</build_depend>
+  <run_depend>opencl_latest</run_depend>
 
   <run_depend>roscpp</run_depend>
   <run_depend>cv_bridge</run_depend><!-- Depend on cv_bridge instead of libopencv-dev to support ROS Hydro.-->
